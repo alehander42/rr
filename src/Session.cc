@@ -674,6 +674,12 @@ static vector<uint8_t> capture_syscallbuf(const AddressSpace::Mapping& m,
   return clone_leader->read_mem(start, data_size);
 }
 
+void Session::dump_checkpoint(Session& e) {
+  if (e.clone_completion) {
+    printf(" ");
+  }
+}
+
 void Session::copy_state_to(Session& dest, EmuFs& emu_fs, EmuFs& dest_emu_fs) {
   assert_fully_initialized();
   DEBUG_ASSERT(!dest.clone_completion);
@@ -731,9 +737,11 @@ void Session::copy_state_to(Session& dest, EmuFs& emu_fs, EmuFs& dest_emu_fs) {
     group.clone_leader_state = group_leader->capture_state();
   }
   dest.clone_completion = move(completion);
+  dump_checkpoint(dest);
 
   DEBUG_ASSERT(dest.vms().size() > 0);
 }
+
 
 bool Session::has_cpuid_faulting() {
   return !Flags::get().disable_cpuid_faulting && cpuid_faulting_works();

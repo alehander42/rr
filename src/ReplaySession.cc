@@ -252,6 +252,7 @@ bool ReplaySession::can_clone() {
   return t && done_initial_exec() && can_checkpoint_at(current_trace_frame());
 }
 
+
 DiversionSession::shr_ptr ReplaySession::clone_diversion() {
   finish_initializing();
   clear_syscall_bp();

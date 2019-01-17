@@ -58,6 +58,7 @@ static SubstreamData substreams[TraceStream::SUBSTREAM_COUNT] = {
   { "data", 1024 * 1024, 0 },
   { "mmaps", 64 * 1024, 1 },
   { "tasks", 64 * 1024, 1 },
+  { "checkpoints", 1024 * 1024, 0}
 };
 
 static const SubstreamData& substream(TraceStream::Substream s) {

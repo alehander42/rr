@@ -227,3 +227,37 @@ struct Frame {
     }
   }
 }
+
+
+struct CapturedState {
+    ticks @0 :Ticks;
+    regs @1 :Registers;
+    extraRegs @2 :ExtraRegisters;
+    prname @3 :CString;
+    threadAreas @4 :List(UserDesc);
+    syscallbufChild @5 :RemotePtr;
+    syscallbufSize @6 :Int64;
+    numSyscallbufBytes @7 :Int64;
+    preloadGlobals @8 :RemotePtr;
+    scratchPtr @9 :RemotePtr;
+    scratchSize @10 :RemotePtr;
+    topOfStack @11 :RemotePtr;
+    clonedFileDataOffset @12 :Int64;
+    threadLocals @13 :List(Int8);
+    recTid @14 :Int64;
+    serial @15 :Int32;
+    deschedFdChild @16 :Int64;
+    clonedFileDataFdChild @17 :Int64;
+    waitStatus @18 :WaitStatus;
+  
+  struct UserDesc {
+    entryNumber @0 :Int64;
+    baseAddr @1 :Int64;
+  }
+
+  struct WaitStatus {
+    status @0 :Int64;
+  }
+}
+
+

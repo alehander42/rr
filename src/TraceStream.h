@@ -58,6 +58,7 @@ public:
     MMAPS,
     // Substream that stores task creation and exec events
     TASKS,
+    CHECKPOINTS,
     SUBSTREAM_COUNT
   };
 
